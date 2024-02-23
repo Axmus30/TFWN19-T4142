@@ -32,6 +32,7 @@ section {
     justify-content: center;
     align-items: center;
     flex-direction: column; 
+    
 }
 a{
     color: inherit; 
@@ -50,8 +51,15 @@ img{
     font-size: 50px;
 }
 
+#store-info h1{
+    font-size: 20px;
+}
+#store-info h2{
+    font-size: 20px;
+}
 #storeDiv {
     margin-top: 50px;
+    
 }
 
 #storeDetails {
