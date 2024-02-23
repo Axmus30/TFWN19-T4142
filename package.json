@@ -2,13 +2,16 @@
   "name": "tfwn19-t4142",
   "version": "1.0.0",
   "description": "project for advanced web course",
-  "main": "index.js",
+  "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "express": "^4.18.2"
+    "express": "^4.18.2",
+    "express-handlebars": "^7.1.2",
+    "express-session": "^1.18.0",
+    "pg": "^8.11.3"
   }
 }

@@ -1,0 +1,15 @@
+<section id="Home">
+    <div id="Home-column">
+        <div id="pad-15">
+            <div>
+                <h1>Venues</h1>
+                {{#each stores}}
+                <div>
+                    <h1>Store:  <a href="{{url}}">{{name}}</a></h1>
+                    <h2>district: {{district}}</h2>
+                </div>
+                {{/each}}
+            </div>
+        </div>
+    </div>
+</section>
