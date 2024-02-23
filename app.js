@@ -48,6 +48,51 @@ app.get('/', async function(request, response){
   }
 })
 
+app.post('/auth', async function(request, response) {
+	let username = request.body.username;
+	let password = request.body.password;
+	if (username && password) {
+    let valid = model.validAuth(username)
+    if (valid) {
+      request.session.loggedin = true;
+      request.session.username = username;
+      response.redirect('/admin');
+    }else {
+      response.send('Incorrect Username and/or Password!');
+    }			
+    response.end();
+	} else {
+		response.send('Please enter Username and Password!');
+		response.end();
+	}
+});
+
+app.get('/login', function(request, response){
+  response.render('login');
+})
+
+app.post('/update', function(request, response){
+  if(request.session.loggedin){
+    let name = request.body.editName;
+    let district = request.body.editDistrict;
+    let url = request.body.editUrl;
+    let id = request.body.storeId
+    model.update(name, url,district, id)
+    response.redirect('/admin');
+  } else{
+    response.redirect('/login');
+  }
+})
+
+app.get('/admin', async function(request, response){
+  if (request.session.loggedin) {
+    let stores = await model.getAllStores();
+		response.render('admin', {stores: stores})
+	} else {
+		response.redirect('/login');
+	}
+})
+
 app.listen(port, () => {
   console.log(`Server is running on http://localhost:${port}`);
 });

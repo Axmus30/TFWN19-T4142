@@ -1,0 +1,58 @@
+<section id="Home">
+    <div id="Home-column">
+        <div id="pad-15">
+            <div id="storeDiv">
+                <h1 id="title">Store's</h1>
+                {{#each stores}}
+                <div id="storeDetails">
+                    <div id="store-info">
+                        <h1>Store: <a href="{{url}}">{{name}}</a></h1>
+                        <h2>District: {{district}}</h2>
+                        <img class="editStoreBtn" src="/img/edit-xxl.png" alt="" data-store-id="{{id}}">
+                    </div>
+                </div>
+                <div class="edit" id="edit-{{id}}">
+                    <form class="editForm" method="post" action="/update">
+                        <span class="close">&times;</span>
+                        <label for="editName">Name:</label>
+                        <input type="text" id="editName-{{id}}" name="editName" value="{{name}}"><br><br>
+                        <label for="editUrl">URL:</label>
+                        <input type="text" id="editUrl-{{id}}" name="editUrl" value="{{url}}"><br><br>
+                        <label for="editDistrict">District:</label>
+                        <input type="text" id="editDistrict-{{id}}" name="editDistrict" value="{{district}}"><br><br>
+                        <input type="hidden" name="storeId" value="{{id}}">
+                        <button type="submit">Update</button>
+                    </form>
+                </div>
+                {{/each}}
+            </div>  
+        </div>
+    </div>
+   <script>
+    document.addEventListener("DOMContentLoaded", function() {
+    var id = 0
+    var editButtons = document.querySelectorAll('.editStoreBtn');
+    editButtons.forEach(function(btn) {
+        btn.onclick = function() {
+            var storeId = btn.getAttribute('data-store-id');
+            id = storeId
+            document.getElementById('edit-' + storeId).style.display = 'block';
+        };
+    });
+
+    var closeButtons = document.querySelectorAll('.close');
+    closeButtons.forEach(function(span) {
+        span.onclick = function() {
+            document.getElementById('edit-' + id).style.display = 'none';
+        };
+    });
+    
+    window.onclick = function(event) {
+        if (event.target.classList.contains('edit')) {
+            event.target.style.display = 'none';
+        }
+    };
+});
+</script>
+
+</section>
