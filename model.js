@@ -6,7 +6,7 @@ class Model {
       user: 'postgres',
       host: 'localhost',
       database: 'postgres',
-      password: '99Axelostan',
+      password: '',
       port: 5432,
     });
   }
